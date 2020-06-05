@@ -4,7 +4,9 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 const customStyles = {
     header: {
-        background: 'hsl(210, 15%, 35%)'
+        background: 'hsl(210, 15%, 35%)',
+        height: '7%',
+        width: 'inherit'
     },
     brandName: {
         margin: '0 auto'

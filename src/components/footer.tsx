@@ -1,10 +1,13 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Box, Toolbar, Typography } from '@material-ui/core';
 
 const customStyles = {
     footer: {
-        bottom: 0,
-        background: 'hsl(210, 15%, 35%)'
+        background: 'hsl(210, 10%, 82%)',
+        bottom: '0',
+        left: '0',
+        width: 'inherit',
+        height: '7%'
     },
     copyright: {
         margin: '0 auto'
@@ -12,10 +15,10 @@ const customStyles = {
 }
 
 const Footer = ():JSX.Element => 
-    <AppBar component="footer" position='sticky' style={customStyles.footer}>
+    <Box component="footer" position="absolute" style={customStyles.footer}>
         <Toolbar>
             <Typography style={customStyles.copyright}>copyright, &copy; 2020</Typography>
         </Toolbar>
-    </AppBar>
+    </Box>
 
 export default Footer;
