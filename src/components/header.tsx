@@ -1,16 +1,22 @@
 import React from 'react';
 import { AppBar,Toolbar, IconButton, Typography, TextField } from '@material-ui/core';
 
-const Header = () => 
+const customStyles = {
+    header: {
+        background: 'hsl(210, 15%, 35%)'
+    },
+    brandName: {
+        margin: '0 auto'
+    }
+}
+
+const Header = (): JSX.Element => 
     <React.Fragment>
-        <AppBar position="static" style={{background:"green"}}>
+        <AppBar position="static" style={customStyles.header}>
             <Toolbar>
-                <IconButton edge="start" color="inherit" aria-label="open drawer">
-                </IconButton>
-                <Typography variant="h6" noWrap>
+                <Typography variant="h6" noWrap style={customStyles.brandName} >
                     HOSPITAL-FINDER
                 </Typography>
-                <TextField id="standard-basic" label="Standard" />
             </Toolbar>
         </AppBar>
     </React.Fragment>

@@ -1,9 +1,17 @@
 import React from 'react';
 import Header from '../components/header';
 
+const customStyles = {
+  body: {
+    background: 'hsl(210, 10%, 62%)',
+    width: '100vw',
+    height: '100vh',
+  }
+}
+
 const App = ():JSX.Element => 
-    <React.Fragment>
+    <main style={customStyles.body}>
       <Header />
-    </React.Fragment>
+    </main>
 
 export default App;
