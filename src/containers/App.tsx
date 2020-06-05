@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const customStyles = {
   body: {
@@ -12,6 +13,7 @@ const customStyles = {
 const App = ():JSX.Element => 
     <main style={customStyles.body}>
       <Header />
+      <Footer />
     </main>
 
 export default App;

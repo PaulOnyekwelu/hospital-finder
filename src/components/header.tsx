@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar,Toolbar, IconButton, Typography, TextField } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
+
 
 const customStyles = {
     header: {
@@ -11,14 +12,12 @@ const customStyles = {
 }
 
 const Header = (): JSX.Element => 
-    <React.Fragment>
-        <AppBar position="static" style={customStyles.header}>
-            <Toolbar>
-                <Typography variant="h6" noWrap style={customStyles.brandName} >
-                    HOSPITAL-FINDER
-                </Typography>
-            </Toolbar>
-        </AppBar>
-    </React.Fragment>
+    <AppBar position="static" style={customStyles.header}>
+        <Toolbar>
+            <Typography variant="h6" noWrap style={customStyles.brandName} >
+                HOSPITAL-FINDER
+            </Typography>
+        </Toolbar>
+    </AppBar>
 
 export default Header;
