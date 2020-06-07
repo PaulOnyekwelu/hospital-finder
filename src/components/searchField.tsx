@@ -1,5 +1,7 @@
 import React from 'react';
-import {FormControl, InputLabel, Select, MenuItem, FormHelperText, TextField } from '@material-ui/core';
+import {FormControl, TextField, Box } from '@material-ui/core';
+import PlacesAutocomplete from 'react-places-autocomplete';
+
 
 const customStyle = {
     formSection: {
@@ -7,7 +9,8 @@ const customStyle = {
         width: 'inherit',
         margin: '0 auto',
         justifyContent: 'space-around',
-        color: 'white'
+        color: 'white',
+        position: 'relative'
     },
     formElement: {
         margin: '2rem',
@@ -15,34 +18,44 @@ const customStyle = {
         color: 'inherit'
         
     },
-    inputElement: {
-        borderColor: 'black'
+    dropDown: {
+        background: 'white',
+        color: 'black',
+        zIndex: 10,
+        padding: '1rem'
     }
 }
 
-const SearchField = (): JSX.Element => {
+const SearchField = (props: any): JSX.Element => {
+
     return(
-        <section >
-            <form noValidate autoComplete="off" style={customStyle.formSection}>
-                <FormControl style={customStyle.formElement}>
-                    <InputLabel id="demo-simple-select-helper-label">Geo-Fencing</InputLabel>
-                    <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
-                    >
-                        <MenuItem value={10}>5km</MenuItem>
-                        <MenuItem value={20}>10km</MenuItem>
-                        <MenuItem value={30}>20km</MenuItem>
-                        <MenuItem value={30}>40km</MenuItem>
-                        <MenuItem value={30}> {`>50km`}</MenuItem>
-                    </Select>
-                    <FormHelperText>Select preferred Geo-Fencing Radius</FormHelperText>
-                </FormControl>
-                <FormControl style={customStyle.formElement}>
-                    <TextField id="standard-basic" label="Enter Location" style={{color: 'white'}} />
-                </FormControl>
-            </form>
-        </section>
+        <FormControl style={customStyle.formElement}>
+            <PlacesAutocomplete value={props.address} onChange={props.handleChange} onSelect={props.handleSelect} searchOptions={props.searchOptions} >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                <div>
+                <TextField label="Enter Location" {...getInputProps({ className: 'location-search-input', })} />
+                <Box className="autocomplete-dropdown-container" position= 'absolute' style={customStyle.dropDown}>
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                        ? 'suggestion-item--active'
+                        : 'suggestion-item';
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                        return (
+                        <div {...getSuggestionItemProps(suggestion, { className,style, })} >
+                            <span>{suggestion.description}</span>
+                        </div>
+                        );
+                    })}
+                </Box>
+                </div>
+                    )}
+            </PlacesAutocomplete>
+        </FormControl>
+
     )
 }
 

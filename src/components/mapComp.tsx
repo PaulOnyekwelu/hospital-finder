@@ -1,5 +1,6 @@
 import React from 'react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper, Circle } from "google-maps-react";
+import { mapAPIKey } from '../constant';
 
 const customStyle = {
   mapComp: {
@@ -11,21 +12,35 @@ const customStyle = {
 
 const MapComp = (props:any):JSX.Element => {
 
-  const onMarkerClick = () => {}
+  const onMarkerClick = () => {
+    
+  }
 
   return(
-        <Map google={props.google} zoom={14} style={customStyle.mapComp}>
-           <Marker onClick={onMarkerClick} />
-          {/*
-          <InfoWindow onClose={this.onInfoWindowClose}>
+        <Map google={props.google} initialCenter={props.latlng} zoom={10} style={customStyle.mapComp}>
+           <Marker onClick={onMarkerClick} position={props.latlng} />
+
+          {/* <InfoWindow onClose={onInfoWindowClose}>
             <div>
-              <h1>{this.state.selectedPlace.name}</h1>
+              <h1>{props.address}</h1>
             </div>
           </InfoWindow> */}
+          <Circle
+            radius={props.inputGeoFencing}
+            center={props.latlng}
+            onMouseover={() => console.log('mouseover')}
+            onClick={() => console.log('click')}
+            onMouseout={() => console.log('mouseout')}
+            strokeColor='transparent'
+            strokeOpacity={0}
+            strokeWeight={5}
+            fillColor='#FF0000'
+            fillOpacity={0.2}
+          />
       </Map>
   )
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAlBvWAu1kOdxdFkYqqIAw9VbtJ3Ztba-0',
+  apiKey: mapAPIKey,
 })(MapComp);

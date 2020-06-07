@@ -1,32 +1,66 @@
-import React, {useState} from 'react';
-import {Container, Box} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Container, Box } from '@material-ui/core';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 import SearchField from './searchField';
-import SearchResult from './searchResult';
 import MapComp from './mapComp';
+import GeoFencing from './geofencing';
+
 
 const customStyle = {
+    
     mainContainer: {
         width: '90%',
         height: '80%',
         overflow: 'hidden'
+    },
+    formSection: {
+        display: 'flex',
+        width: 'inherit',
+        margin: '0 auto',
+        justifyContent: 'space-around',
+        color: 'white'
     }
 }
 
+
+
 const Main = (props: any): JSX.Element => {
-    // let [latitude, setLatitude] = React.useState(-33.7560119)
-    // let [longitude, setLongitude] = React.useState(150.6038367)
-    // let [address, setAddress] = React.useState('')
-    const [showResult, setShowResult] = useState(false);
+    const [inputGeoFencing, setInputGeoFencing] = useState(10000);
+    const [address, setAddress] = useState('');
+    const [latlng, setLatlng] = useState({ lat: 6.45407, lng: 3.39467 })
+
+    const handleChange = (address: string) => {
+        setAddress(address);
+    }
+
+    const handleSelect = (address: string) => {
+        geocodeByAddress('hospital '+address)
+          .then(results => getLatLng(results[0]))
+          .then(latLng => setLatlng(latLng))
+          .catch(error => console.error('Error', error));
+      };
+
+    const onGeoFenceChange = (e:any) => {
+        setInputGeoFencing(parseInt((e.target as HTMLInputElement).value));
+    }
+
+    const searchOptions ={
+        location: new google.maps.LatLng(latlng.lat, latlng.lng),
+        radius: inputGeoFencing,
+        types: ['hospital']
+    }
+
+
     return(
         <Container style={customStyle.mainContainer}>
-            <SearchField />
-            {
-                showResult ? <SearchResult /> : null
-            }
-            <MapComp />
+            <Box style={customStyle.formSection}>
+                <GeoFencing onGeoFenceChange={onGeoFenceChange} />
+                <SearchField address={address} handleChange={handleChange} handleSelect={handleSelect} />
+            </Box>
+            <MapComp latlng={latlng} address={address} inputGeoFencing={inputGeoFencing} searchOptions={searchOptions} />
         </Container>
     )
 }
 
-export default React.forwardRef(Main);
+export default React.memo(Main);

@@ -1,7 +1,8 @@
 import React from "react";
 import {Box} from '@material-ui/core';
 
-import { Header, Footer, Main } from "../components";
+import { Header, Footer, Main } from "./components";
+
 
 const customStyles = {
   body: {
