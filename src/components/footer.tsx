@@ -3,7 +3,7 @@ import { Box, Toolbar, Typography } from '@material-ui/core';
 
 const customStyles = {
     footer: {
-        background: 'hsl(210, 10%, 82%)',
+        background: 'hsl(210, 10%, 96%)',
         bottom: '0',
         left: '0',
         width: 'inherit',
