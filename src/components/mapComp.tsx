@@ -17,7 +17,7 @@ const MapComp = (props:any):JSX.Element => {
   }
 
   return(
-        <Map google={props.google} initialCenter={props.latlng} zoom={10} style={customStyle.mapComp}>
+        <Map google={props.google} initialCenter={props.latlng} center={props.latlng} zoom={10} style={customStyle.mapComp}>
            <Marker onClick={onMarkerClick} position={props.latlng} />
 
           {/* <InfoWindow onClose={onInfoWindowClose}>
