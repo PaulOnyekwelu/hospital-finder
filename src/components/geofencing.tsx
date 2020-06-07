@@ -11,9 +11,9 @@ const customStyle = {
 }
 const GeoFencing = (props: any):JSX.Element => {
     return (
-        <FormControl style={customStyle.formElement}>
-            <InputLabel id="demo-simple-select-helper-label">Geo-Fencing</InputLabel>
-            <Select labelId="demo-simple-select-helper-label" id="demo-simple-select-helper" onChange={props.onGeoFenceChange} >
+        <FormControl style={customStyle.formElement} className="formItem">
+            <InputLabel id="selectField">Geo-Fencing</InputLabel>
+            <Select labelId="selectField" value={props.inputGeoFencing} id="demo-simple-select-helper" onChange={props.onGeoFenceChange} >
                 <MenuItem value={5000}>5km</MenuItem>
                 <MenuItem value={10000}>10km</MenuItem>
                 <MenuItem value={20000}>20km</MenuItem>

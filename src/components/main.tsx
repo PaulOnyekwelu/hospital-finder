@@ -16,12 +16,13 @@ const customStyle = {
     display: "flex",
     width: "inherit",
     margin: "0 auto",
+    padding: 0,
     justifyContent: "space-around",
     color: "white",
   },
 };
 
-const Main = (props: any): JSX.Element => {
+const Main = (): JSX.Element => {
   const [inputGeoFencing, setInputGeoFencing] = useState(1000);
   const [address, setAddress] = useState('');
   const [latlng, setLatlng] = useState({ lat: 6.45407, lng: 3.39467 });
@@ -49,7 +50,7 @@ const Main = (props: any): JSX.Element => {
   const searchOptions = {
     location: new google.maps.LatLng(latlng.lat, latlng.lng),
     radius: inputGeoFencing,
-    types: ["hospital"],
+    type: ['hospital'],
   };
 
   const onMarkerClick = (marker: React.SetStateAction<{}>) => {
@@ -58,20 +59,20 @@ const Main = (props: any): JSX.Element => {
   };
 
   return (
-    <Container style={customStyle.mainContainer}>
-      <Box style={customStyle.formSection}>
-        <GeoFencing onGeoFenceChange={onGeoFenceChange} />
+    <Container style={customStyle.mainContainer} className="mainContainer">
+      <Box style={customStyle.formSection} className="formContainer">
+        <GeoFencing onGeoFenceChange={onGeoFenceChange} inputGeoFencing={inputGeoFencing} />
         <SearchField
           address={address}
           handleChange={handleChange}
           handleSelect={handleSelect}
+          searchOptions={searchOptions}
         />
       </Box>
       <MapComp
         latlng={latlng}
         address={address}
         inputGeoFencing={inputGeoFencing}
-        searchOptions={searchOptions}
         onMarkerClick={onMarkerClick}
         showingInfoWindow={showingInfoWindow}
         activeMarker={activeMarker}

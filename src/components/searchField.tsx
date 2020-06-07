@@ -26,7 +26,7 @@ const customStyle = {
 
 const SearchField = (props: any): JSX.Element => {
   return (
-    <FormControl style={customStyle.formElement}>
+    <FormControl style={customStyle.formElement} className="formItem">
       <PlacesAutocomplete
         value={props.address}
         onChange={props.handleChange}
@@ -57,7 +57,7 @@ const SearchField = (props: any): JSX.Element => {
                   <div
                     {...getSuggestionItemProps(suggestion, {
                       className,
-                      style,
+                      style:{ padding: '10px'},
                     })}
                   >
                     <span>{suggestion.description}</span>

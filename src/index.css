@@ -4,3 +4,27 @@
     padding: 0;
 }
 
+
+@media only screen and (max-width: 500px){
+    .mainContainer{
+        width: 100%;
+    }
+    .formContainer{
+        display: flex;
+        flex-direction: column;
+        width: 300px !important;
+        padding: 0;
+        margin: 0 auto;
+        justify-content: flex-start !important;
+    }
+    .formItem{
+        width: 200px !important;
+        padding: 0 !important;
+        margin: 10px !important;
+    }
+    .footer{
+        background: 'white' !important;
+        width: 'inherit';
+        height: 6% !important;
+    }
+}

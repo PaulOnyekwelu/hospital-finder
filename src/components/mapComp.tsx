@@ -3,10 +3,10 @@ import {
   Map,
   Marker,
   GoogleApiWrapper,
-  InfoWindow,
   Circle,
 } from "google-maps-react";
 import { mapAPIKey } from "../constant";
+
 
 const customStyle = {
   mapComp: {
@@ -23,21 +23,13 @@ const MapComp = (props: any): JSX.Element => {
       center={props.latlng}
       zoom={14}
       style={customStyle.mapComp}
+      
     >
       <Marker
         onClick={props.onMarkerClick}
         title={props.address}
         position={props.latlng}
       />
-      {/* <InfoWindow
-            map={props.map}
-            google = {props.google}
-            marker={props.activeMarker}
-            visible={props.showingInfoWindow}>
-              <div>
-                <h1>{props.address}</h1>
-              </div>
-          </InfoWindow> */}
       <Circle
         radius={props.inputGeoFencing}
         center={props.latlng}

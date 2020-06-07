@@ -15,7 +15,7 @@ const customStyles = {
 }
 
 const Footer = ():JSX.Element => 
-    <Box component="footer" position="absolute" style={customStyles.footer}>
+    <Box component="footer" position="absolute" style={customStyles.footer} className='footer'>
         <Toolbar>
             <Typography style={customStyles.copyright}>copyright, &copy; 2020</Typography>
         </Toolbar>
