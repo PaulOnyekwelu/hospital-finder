@@ -34,7 +34,7 @@ const SearchField = (props: any): JSX.Element => {
         searchOptions={props.searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
+          <Box component="div">
             <TextField
               label="Enter Location"
               {...getInputProps({ className: "location-search-input" })}
@@ -54,18 +54,18 @@ const SearchField = (props: any): JSX.Element => {
                   ? { backgroundColor: "#fafafa", cursor: "pointer" }
                   : { backgroundColor: "#ffffff", cursor: "pointer" };
                 return (
-                  <div
+                  <Box component="div"
                     {...getSuggestionItemProps(suggestion, {
                       className,
                       style:{ padding: '10px'},
                     })}
                   >
                     <span>{suggestion.description}</span>
-                  </div>
+                  </Box>
                 );
               })}
             </Box>
-          </div>
+          </Box>
         )}
       </PlacesAutocomplete>
     </FormControl>
